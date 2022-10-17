@@ -1,0 +1,121 @@
+{% load static %}
+
+<header class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle pull-left" type="button" data-toggle="collapse" data-target="#navbar">
+        <span class="sr-only">
+        </span>
+        <span class="icon-bar">
+        </span>
+        <span class="icon-bar">
+        </span>
+        <span class="icon-bar">
+        </span>
+      </button>
+      <a class="navbar-brand">
+        Bookstore
+      </a>
+      <a class="shop-link pull-right visible-xs" href="#">
+        <span class="shop-icon">
+          <span class="shop-quantity">
+            3
+          </span>
+        </span>
+      </a>
+    </div>
+    <a class="shop-link pull-right hidden-xs" href="#">
+      <span class="shop-icon">
+        <span class="shop-quantity">
+          3
+        </span>
+      </span>
+    </a>
+    <div id="navbar" class="navbar-collapse collapse pl-30" aria-expanded="false">
+      <div class="visible-xs">
+        <button class="close" type="button" aria-label="Close">
+          <span aria-hidden="true">
+            &times;
+          </span>
+        </button>
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="#">
+              Home
+            </a>
+          </li>
+          <li>
+            <a type="button" data-toggle="collapse" href="#menu" aria-expanded="false" aria-controls="menu">
+              Shop
+            </a>
+            <ul id="menu" class="collapse list-unstyled pl-30 mb-10" aria-expanded="false">
+              <li>
+                <a class="collapse-link" href="#">
+                  Mobile development
+                </a>
+              </li>
+              <li>
+                <a class="collapse-link" href="#">
+                  Photo
+                </a>
+              </li>
+              <li>
+                <a class="collapse-link" href="#">
+                  Web design
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">
+              My account
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="hidden-xs">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="#">
+              Home
+            </a>
+          </li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              Shop
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#">
+                  Mobile development
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  Photo
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  Web design
+                </a>
+              </li>
+              <li class="divider" role="separator">
+              </li>
+              <li>
+                <a href="#">
+                  Log out
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">
+              My account
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>

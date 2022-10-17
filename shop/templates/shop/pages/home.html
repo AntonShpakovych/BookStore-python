@@ -1,0 +1,10 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block content %}
+    {% include '../layouts-home/carousel.html' %}
+    <div class="container">
+        {% include '../layouts-home/welcome.html' %}
+        {% include '../layouts-home/best-sellers.html' %}
+    </div>
+{% endblock %}
