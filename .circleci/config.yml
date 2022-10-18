@@ -21,6 +21,9 @@ jobs:
       - checkout
       - python/load-cache
       - run:
+          name: Wait for db to run
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
           name: Installing dependencies
           command: |
             python3 -m venv venv
