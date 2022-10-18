@@ -8,9 +8,21 @@ jobs:
     executor: python/default
     docker:
       - image: circleci/python:3.9
+        environment:
+          DATABASE_URL: postgresql://circleci@localhost/circle_test
+      - image: circleci/postgres:13.3
+        environment:
+          PGHOST: localhost
+          PGUSER: circleci
+          POSTGRES_USER: circleci
+          POSTGRES_DB: circle_test
+          POSTGRES_HOST_AUTH_METHOD: trust
     steps:
       - checkout
       - python/load-cache
+      - run:
+          name: Wait for db to run
+          command: dockerize -wait tcp://localhost:5432 -timeout 2m
       - run:
           name: Installing dependencies
           command: |
