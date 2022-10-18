@@ -5,16 +5,17 @@ jobs:
   test:
     docker:
       - image: cimg/python:3.9.0-browsers
-        environment:
-          DATABASE_URL: postgresql://root@localhost/circle_test?sslmode=disable
       - image: cimg/postgres:13.3
         environment:
-          POSTGRES_USER: root
-          POSTGRES_DB: circle_test
+          POSTGRES_USER: bookstore
+          POSTGRES_DB: bookstore
     steps:
       - checkout
       - python/install-packages:
           pkg-manager: pipenv
+      - run:
+          name: Migration
+          command: pipenv run python manage.py migrate
       - run:
           name: Run tests
           command: pipenv run python manage.py test
