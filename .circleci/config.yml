@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/python:3.9
-      - image: circleci/postgres:13.3-postgis
+      - image: circleci/postgres:13.3
         environment:
           POSTGRES_USER: bookstore
           POSTGRES_DB: bookstore
