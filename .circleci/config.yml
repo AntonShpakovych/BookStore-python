@@ -1,28 +1,35 @@
-version: 2
+version: 2.1
+
+orbs:
+  python: circleci/python@0.2.1
+
 jobs:
   build:
+    executor: python/default
     docker:
       - image: circleci/python:3.9
+        environment:
+          ENV: CIRCLE
+          DATABASE_URL: postgresql://circleci@localhost/circle_test
       - image: circleci/postgres:13.3
         environment:
-          POSTGRES_PASSWORD: 45RB^b1V3xNq
-          POSTGRES_USER: bookstore
-          POSTGRES_DB: bookstore
+          PGHOST: localhost
+          PGUSER: circleci
+          POSTGRES_USER: circleci
+          POSTGRES_DB: circle_test
+          POSTGRES_HOST_AUTH_METHOD: trust
     steps:
       - checkout
+      - python/load-cache
       - run:
           name: Installing dependencies
           command: |
             python3 -m venv venv
             . venv/bin/activate
             pip3 install -r requirements.txt
-      - run:
-          name: Running migrations
-          command: |
-            . venv/bin/activate
-            python manage.py migrate --skip-checks
+      - python/save-cache
       - run:
           name: Running tests
           command: |
             . venv/bin/activate
-            python manage.py test shop
+            python manage.py test
