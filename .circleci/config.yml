@@ -26,3 +26,5 @@ jobs:
           command: |
             . venv/bin/activate
             python manage.py test shop
+          environment:
+            DATABASE_URL: postgres://ubuntu@localhost:5432/bookstore
