@@ -3,6 +3,10 @@ jobs:
   build:
     docker:
       - image: circleci/python:3.9
+      - image: circleci/postgres:13.3-postgis
+        environment:
+          POSTGRES_USER: bookstore
+          POSTGRES_DB: bookstore
     steps:
       - checkout
       - run:
@@ -21,3 +25,5 @@ jobs:
           command: |
             . venv/bin/activate
             python manage.py test shop
+          environment:
+            DATABASE_URL: "postgres://ubuntu@localhost:5432/bookstore
