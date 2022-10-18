@@ -1,26 +1,23 @@
-version: 2.1
-orbs:
-  python: circleci/python@2.1.1
+version: 2
 jobs:
-  test:
+  build:
     docker:
-      - image: cimg/python:3.9.0-browsers
-      - image: cimg/postgres:13.3
-        environment:
-          POSTGRES_USER: bookstore
-          POSTGRES_DB: bookstore
+      - image: circleci/python:3.9
     steps:
       - checkout
-      - python/install-packages:
-          pkg-manager: pipenv
       - run:
-          name: Migration
-          command: pipenv run python manage.py migrate
+          name: Installing dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip3 install -r requirements.txt
       - run:
-          name: Run tests
-          command: pipenv run python manage.py test
-workflows:
-  version: 2
-  testing:
-    jobs:
-      - test
+          name: Running migrations
+          command: |
+            . venv/bin/activate
+            python manage.py migrate --skip-checks
+      - run:
+          name: Running tests
+          command: |
+            . venv/bin/activate
+            python manage.py test shop
