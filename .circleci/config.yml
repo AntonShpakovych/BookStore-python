@@ -1,37 +1,26 @@
-version: 2.1
-
-orbs:
-  python: circleci/python@0.2.1
-
+version: 2
 jobs:
   build:
-    executor: python/default
     docker:
       - image: circleci/python:3.9
-      - image: circleci/postgres:13.3
-        environment:
-          POSTGRES_USER: bookstore
-          POSTGRES_PASSWORD: 45RB^b1V3xNq
-          POSTGRES_DB: bookstore
     steps:
       - checkout
-      - python/load-cache
+      - restore_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
       - run:
-          name: Wait for db to run
-          command: dockerize -wait tcp://localhost:5432 -timeout 1m
-      - run:
-          name: Installing dependencies
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            pip3 install -r requirements.txt
-      - python/save-cache
+            pip install -r requirements.txt
+      - save_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+          paths:
+            - "venv"
       - run:
           name: Running tests
           command: |
             . venv/bin/activate
-            python manage.py test --keepdb
-workflows:
-  main:
-    jobs:
-      - build
+            python3 manage.py test
+      - store_artifacts:
+          path: test-reports/
+          destination: python_app
