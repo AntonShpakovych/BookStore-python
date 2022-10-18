@@ -12,7 +12,7 @@ jobs:
         environment:
           POSTGRES_USER: bookstore
           POSTGRES_PASSWORD: 45RB^b1V3xNq
-          POSTGRES_DB: test_shop
+          POSTGRES_DB: bookstore
     steps:
       - checkout
       - python/load-cache
@@ -30,7 +30,7 @@ jobs:
           name: Running tests
           command: |
             . venv/bin/activate
-            python manage.py test --keepdb
+            python manage.py test
 workflows:
   main:
     jobs:
