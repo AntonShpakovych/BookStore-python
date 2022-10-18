@@ -1,18 +1,16 @@
 version: 2.1
-
 orbs:
-  node: circleci/python@2.1.1
-
+  python: circleci/python@2.1.1
 jobs:
   test:
     docker:
       - image: cimg/python:3.9.0-browsers
-      environment:
-        DATABASE_URL: postgresql://root@localhost/circle_test?sslmode=disable
+        environment:
+          DATABASE_URL: postgresql://root@localhost/circle_test?sslmode=disable
       - image: cimg/postgres:13.3
-      environment:
-        POSTGRES_USER: root
-        POSTGRES_DB: circle_test
+        environment:
+          POSTGRES_USER: root
+          POSTGRES_DB: circle_test
     steps:
       - checkout
       - python/install-packages:
@@ -22,6 +20,6 @@ jobs:
           command: pipenv run python manage.py test
 workflows:
   version: 2
-  testing:     
+  testing:
     jobs:
       - test
