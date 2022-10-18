@@ -22,7 +22,7 @@ jobs:
       - python/load-cache
       - run:
           name: Wait for db to run
-          command: dockerize -wait tcp://localhost:5432 -timeout 2m
+          command: dockerize -wait tcp://localhost:5432 -timeout 500m
       - run:
           name: Installing dependencies
           command: |
