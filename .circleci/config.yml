@@ -17,4 +17,4 @@ jobs:
       - run:
           name: Run django tests
           command: |
-            pipenv run python manage.py test -keepdb
+            pipenv run python manage.py test
