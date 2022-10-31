@@ -1,0 +1,36 @@
+{% load static %}
+
+{% for book in page_obj %}
+  <div class="col-xs-6 col-sm-3">
+      <div class="general-thumb-wrap">
+        <div class="thumbnail general-thumbnail">
+          <img class="img-shadow general-thumbnail-img" src="http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg" alt="design-book"/>
+          <div class="thumb-hover">
+            <div class="general-thumb-link-wrap">
+              <a class="thumb-hover-link" href="{% url 'book' id=book.id%}">
+                <i class="fa fa-eye thumb-icon" aria-hidden="true">
+                </i>
+              </a>
+              <a class="thumb-hover-link" href="#">
+                <i class="fa fa-shopping-cart thumb-icon">
+                </i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="general-thumb-info">
+        <p class="title">
+          {{ book.title }}
+        </p>
+        <p class="font-16 in-gold-500">
+          €{{ book.price }}
+        </p>
+        <span class="divider-sm">
+        </span>
+        <p class="lead small">
+          {{ book.all_authors }}
+        </p>
+      </div>
+  </div>
+{% endfor %}

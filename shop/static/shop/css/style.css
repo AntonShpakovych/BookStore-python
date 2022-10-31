@@ -9039,3 +9039,7 @@ img {
 .mb-120 {
   margin-bottom: 120px !important;
 }
+
+.hidde{
+  display: none;
+}
