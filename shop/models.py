@@ -11,8 +11,8 @@ class Category(models.Model):
         verbose_name_plural = "Categories"
 
 class Author(models.Model):
-    first_name = models.CharField(max_length = 30, null= False)
-    last_name = models.CharField(max_length = 30, null= False)
+    first_name = models.CharField(max_length = 30, null = False)
+    last_name = models.CharField(max_length = 30, null = False)
 
     def __str__(self):
         return self.first_name
