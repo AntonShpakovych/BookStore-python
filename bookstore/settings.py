@@ -72,7 +72,7 @@ DATABASES = {
         'USER': 'bookstore',
         'PASSWORD': os.getenv('PASSWORD'),
         'HOST': '',
-        'PORT': '',
+        'PORT': '5432',
     }
 }
 
