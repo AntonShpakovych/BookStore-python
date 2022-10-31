@@ -1,0 +1,24 @@
+version: 2.1
+orbs:
+  python: circleci/python@1.0.0
+jobs:
+  build:
+    docker:
+      - image: cimg/python:3.9.0
+        environment:
+          DATABASE_URL: postgresql://bookstore@localhost/bookstore?sslmode=disable
+      - image: cimg/postgres:13.8
+        environment:
+          POSTGRES_USER: bookstore
+          POSTGRES_DB: bookstore
+    steps:
+      - checkout
+      - python/install-packages
+      - run:
+          name: Run django tests
+          command: |
+            pipenv run python manage.py test
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - .
