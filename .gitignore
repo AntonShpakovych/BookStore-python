@@ -1,5 +1,4 @@
 env/
-simple_cred/
 htmlcov/
 __pycache__/
 .env
