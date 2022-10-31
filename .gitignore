@@ -2,3 +2,5 @@ env/
 htmlcov/
 __pycache__/
 .env
+.coverage
+htmlcov/
