@@ -1,33 +1,16 @@
 {% load static %}
+{% load books_tags %}
+
 <p class="lead small mb-10">
-    Filter by category
+    Sort by
 </p>
 <div class="dropdown">
-<a class="dropdown-toggle lead small" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-    Newest first
-    <i class="fa fa-angle-down dropdown-icon pull-right">
-    </i>
-</a>
-<ul class="dropdown-menu">
-    <li>
-    <a href="#">
-        Newest first
+    <a class="dropdown-toggle lead small" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+      {{ sorters|get_item:current_sorter }}
+      <i class="fa fa-angle-down dropdown-icon pull-right">
+      </i>
     </a>
-    </li>
-    <li>
-    <a href="#">
-        Popular first
-    </a>
-    </li>
-    <li>
-    <a href="#">
-        Price: Low to hight
-    </a>
-    </li>
-    <li>
-    <a href="#">
-        Price: Hight to low
-    </a>
-    </li>
-</ul>
+    <ul class="dropdown-menu">
+      {% include '../sorters_keys.html' %}
+    </ul>
 </div>

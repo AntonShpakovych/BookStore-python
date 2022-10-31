@@ -1,5 +1,5 @@
 {% load static %}
-{% load get_item %}
+{% load books_tags %}
 
 <div class="dropdowns pull-right">
     <div class="dropdown width-240">
@@ -9,32 +9,7 @@
         </i>
         </a>
         <ul class="dropdown-menu">
-            <li class="sorter">
-                <a href="?filter={{ current_filter }}&sorter=-title">
-                    Title DESC
-                </a>
-            </li>
-
-            <li class="sorter">
-                <a href="?filter={{ current_filter }}&sorter=title">
-                    Title ASC
-                </a>
-            </li>
-            <li class="sorter">
-                <a href="?filter={{ current_filter }}&sorter=-created">
-                    Newest first
-                </a>
-            </li>
-            <li class="sorter">
-                <a href="?filter={{ current_filter }}&sorter=-price">
-                    Price: Hight to low
-                </a>
-            </li>
-            <li class="sorter">
-                <a href="?filter={{ current_filter }}&sorter=price">
-                    Price: Low to hight
-                </a>
-            </li>
+            {% include '../sorters_keys.html' %}
         </ul>
     </div>
 </div>
