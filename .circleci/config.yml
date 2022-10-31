@@ -15,10 +15,6 @@ jobs:
       - checkout
       - python/install-packages
       - run:
-          name: Migrate
-          command: |
-            pipenv run python manage.py migrate
-      - run:
           name: Run django tests
           command: |
-            pipenv run python manage.py test
+            pipenv run python manage.py test -keepdb
