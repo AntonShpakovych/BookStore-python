@@ -18,7 +18,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -47,7 +47,7 @@ ROOT_URLCONF = 'bookstore.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [(os.path.join(BASE_DIR, 'templates')),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,6 +72,11 @@ DATABASES = {
         'NAME': 'bookstore',
         'USER': 'bookstore',
         'PASSWORD': os.getenv('PASSWORD'),
+        'HOST': 'localhost',
+        'PORT': '5432',
+        'TEST':{
+            'MIRROR': 'default',
+        },
     }
 }
 
