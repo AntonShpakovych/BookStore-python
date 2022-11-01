@@ -8,10 +8,10 @@ class TestUrls(SimpleTestCase):
         url = reverse('home')
         self.assertEqual(resolve(url).func, home_page)
     
-    def test_books_url_is_resolved(self):
-        url = reverse('books')
-        self.assertEqual(resolve(url).func, books)
+    # def test_books_url_is_resolved(self):
+    #     url = reverse('books')
+    #     self.assertEqual(resolve(url).func, books)
     
-    def test_book_url_is_resolved(self):
-        url = reverse('book', kwargs={'id': 1})
-        self.assertEqual(resolve(url).func, book)
+    # def test_book_url_is_resolved(self):
+    #     url = reverse('book', kwargs={'id': 1})
+    #     self.assertEqual(resolve(url).func, book)
