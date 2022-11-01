@@ -74,10 +74,10 @@ DATABASES = {
         'PASSWORD': os.getenv('PASSWORD'),
         'HOST': 'localhost',
         'PORT': '5432',
+        'OPTIONS': {'sslmode': 'disable'},
         'TEST':{
             'MIRROR': 'default',
         },
-        'OPTIONS': {'sslmode': 'disabled'}
     }
 }
 
