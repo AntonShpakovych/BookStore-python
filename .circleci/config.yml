@@ -17,6 +17,7 @@ jobs:
       - run:
           name: Run django tests
           command: |
+            pipenv run python manage.py migrate
             pipenv run python manage.py test
       - persist_to_workspace:
           root: ~/project
