@@ -71,6 +71,11 @@ DATABASES = {
         'NAME': 'bookstore',
         'USER': 'bookstore',
         'PASSWORD': os.getenv('PASSWORD'),
+        'HOST': 'localhost',
+        'PORT': '5432',
+        'TEST':{
+            'MIRROR': 'default',
+        },
     }
 }
 
