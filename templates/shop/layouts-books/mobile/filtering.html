@@ -1,0 +1,26 @@
+{% load static %}
+{% load books_tags %}
+
+<p class="lead small mb-10">
+    Filter by category
+</p>
+<div class="dropdown">
+<a class="dropdown-toggle lead small" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+    {% if current_filter and current_filter != 'None' %}
+        {{ current_filter|get_category }}
+    {% else %}
+        All
+    {% endif %}
+    <i class="fa fa-angle-down dropdown-icon pull-right">
+    </i>
+</a>
+<ul class="dropdown-menu">
+    {% for category in filters.keys %}
+        <li>
+            <a href="?filter={{ category.id }}&sorter={{ current_sorter }}">
+                {{ category.name }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+</div>

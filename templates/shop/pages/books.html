@@ -1,0 +1,28 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block content %}
+  <main class="container">
+    <h1 class="general-title-margin">
+      Catalog
+    </h1>
+    <div class="hidden-xs clearfix">
+      {% include '../layouts-books/desktop/sorting.html' %}
+      {% include '../layouts-books/desktop/filtering.html' %}
+    </div>
+    <div class="dropdowns mb-25 visible-xs">
+      {% include '../layouts-books/mobile/sorting.html' %}
+      {% include '../layouts-books/mobile/filtering.html' %}
+    </div>
+    <div class="mb-120">
+      <div class="row">
+        {% include '../layouts-books/book-item.html' %}
+      </div>
+      {% if page_obj.has_next %}
+        <div class="text-center">
+          <a href="?page={{ page_obj.next_page_number }}&filter={{ current_filter }}" class="btn btn-primary">View More</a>
+        </div>
+      {% endif %}
+    </div>
+  </main>
+{% endblock %}

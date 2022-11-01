@@ -1,0 +1,89 @@
+{% load static %}
+<div class="col-sm-6">
+    <h1 class="mt-res-0">
+        {{ book.title }}
+    </h1>
+    <p class="lead small">
+        {{ book.all_authors }}
+    </p>
+    <div class="row">
+      <div class="col-xs-12 col-md-4">
+        <p class="h1 in-gold-500 mt-10">
+          €{{ book.price }}
+        </p>
+      </div>
+      <div class="col-xs-5 col-md-3">
+        <div class="input-group general-position">
+          <a class="input-link" href="#">
+            <i class="fa fa-minus line-height-40">
+            </i>
+          </a>
+          <input class="form-control quantity-input" type="text">
+          </input>
+          <a class="input-link" href="#">
+            <i class="fa fa-plus line-height-40">
+            </i>
+          </a>
+        </div>
+      </div>
+      <div class="col-xs-7 col-md-5">
+        <button class="btn btn-default pull-right general-position">
+          Add to Cart
+        </button>
+      </div>
+    </div>
+    <div class="general-info-wrap divider-lg">
+      <p>
+        Description
+      </p>
+      {% if book.description|length > 250 %}
+        <div id="short_description">
+          <p class="lead small line-height-2">
+            {{ book.description|truncatechars:250 }}
+          </p>
+        </div>
+        <div id="full_description" class=" hidde">
+          <p class="lead small line-height-2">
+            {{ book.description }}
+          </p>
+        </div>
+        <a class="in-gold-500 ml-10" id="read_more" onclick="readMore()" href="#">
+          Read More
+        </a>
+      {% else %}
+      <p class="lead small line-height-2">
+        {{ book.description }}
+      </p>
+      {% endif %}
+    </div>
+    <div class="general-info-wrap divider-lg">
+      <div class="clearfix">
+        <p class="pull-left">
+          Year of publication
+        </p>
+        <p class="lead small pull-right">
+          {{ book.year_of_publication }}
+        </p>
+      </div>
+    </div>
+    <div class="general-info-wrap divider-lg">
+      <div class="clearfix">
+        <p class="pull-left">
+          Dimensions
+        </p>
+        <p class="lead small pull-right">
+          H:{{ book.height }}\" x W: {{ book.width }}\" x L: {{ book.length }}
+        </p>
+      </div>
+    </div>
+    <div class="general-info-wrap divider-lg">
+      <div class="clearfix">
+        <p class="pull-left">
+          Materials
+        </p>
+        <p class="lead small pull-right">
+          {{ book.materials }}
+        </p>
+      </div>
+    </div>
+</div>

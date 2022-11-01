@@ -1,0 +1,23 @@
+{% load static %}
+{% load books_tags %}
+
+<ul class="list-inline pt-10 mb-25 mr-240">
+    <li class="mr-35">
+      <a class="filter-link" href="{% url 'books' %}">
+        All
+        <span class="badge general-badge">
+         {{ books_count }}
+        </span>
+      </a>
+    </li>
+    {% for category, count in filters.items %}
+    <li class="mr-35">
+      <a class="filter-link" href="?filter={{ category.id }}&sorter={{ current_sorter }}">
+        {{ category.name }}
+        <span class="badge general-badge">
+          {{ count }}
+        </span>
+      </a>
+    </li>
+    {% endfor %}
+</ul>

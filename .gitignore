@@ -1,6 +1,7 @@
 env/
-simple_cred/
 htmlcov/
 __pycache__/
-.coverage
 .env
+.coverage
+htmlcov/
+

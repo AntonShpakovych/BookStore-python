@@ -1,0 +1,27 @@
+{% load static %}
+<li class="sorter">
+    <a href="?filter={{ current_filter }}&sorter=-title">
+        Title DESC
+    </a>
+</li>
+
+<li class="sorter">
+    <a href="?filter={{ current_filter }}&sorter=title">
+        Title ASC
+    </a>
+</li>
+<li class="sorter">
+    <a href="?filter={{ current_filter }}&sorter=-created">
+        Newest first
+    </a>
+</li>
+<li class="sorter">
+    <a href="?filter={{ current_filter }}&sorter=-price">
+        Price: Hight to low
+    </a>
+</li>
+<li class="sorter">
+    <a href="?filter={{ current_filter }}&sorter=price">
+        Price: Low to hight
+    </a>
+</li>

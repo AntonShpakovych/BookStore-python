@@ -1,0 +1,15 @@
+{% load static %}
+{% load books_tags %}
+
+<div class="dropdowns pull-right">
+    <div class="dropdown width-240">
+        <a class="dropdown-toggle lead small" id="current_sorter_name" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            {{ sorters|get_item:current_sorter }}
+        <i class="fa fa-angle-down dropdown-icon pull-right">
+        </i>
+        </a>
+        <ul class="dropdown-menu">
+            {% include '../sorters_keys.html' %}
+        </ul>
+    </div>
+</div>
