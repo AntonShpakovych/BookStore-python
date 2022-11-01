@@ -77,6 +77,7 @@ DATABASES = {
         'TEST':{
             'MIRROR': 'default',
         },
+        'OPTIONS': {'sslmode': 'disabled'}
     }
 }
 

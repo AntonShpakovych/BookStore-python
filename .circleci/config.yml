@@ -6,7 +6,7 @@ jobs:
     docker:
       - image: cimg/python:3.9.0
         environment:
-          DATABASE_URL: postgresql://bookstore@localhost/bookstore?sslmode=required
+          DATABASE_URL: postgresql://bookstore@localhost/bookstore?sslmode=disable
       - image: cimg/postgres:13.8
         environment:
           POSTGRES_USER: bookstore
