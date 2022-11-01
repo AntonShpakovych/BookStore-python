@@ -127,4 +127,5 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'shop/static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-django_heroku.settings(locals())
+if 'IS_HEROKU' in os.environ:
+    django_heroku.settings(locals())
