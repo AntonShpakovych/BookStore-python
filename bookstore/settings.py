@@ -1,8 +1,8 @@
 from pathlib import Path
 from dotenv import load_dotenv
 import os
-import django_heroku
-import dj_database_url
+# import django_heroku
+# import dj_database_url
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -127,4 +127,4 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'shop/static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
