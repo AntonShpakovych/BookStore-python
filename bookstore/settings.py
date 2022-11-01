@@ -2,7 +2,6 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 import django_heroku
-import dj_database_url
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -18,7 +17,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -48,7 +47,7 @@ ROOT_URLCONF = 'bookstore.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [(os.path.join(BASE_DIR, 'templates')),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -73,6 +72,11 @@ DATABASES = {
         'NAME': 'bookstore',
         'USER': 'bookstore',
         'PASSWORD': os.getenv('PASSWORD'),
+        'HOST': 'localhost',
+        'PORT': '5432',
+        'TEST':{
+            'MIRROR': 'default',
+        },
     }
 }
 
@@ -114,7 +118,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'shop/static')]
 
 
@@ -125,4 +129,5 @@ LOGIN_REDIRECT_URL =  '/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-django_heroku.settings(locals())
+if 'IS_HEROKU' in os.environ:
+    django_heroku.settings(locals())
