@@ -25,11 +25,14 @@ AUTHENTICATION_BACKENDS = (
 )
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv('GOOGLE_KEY')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv('GOOGLE_SECRET')
-
-LOGIN_URL = '/auth/login/google-oauth2/'
-
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+if 'IS_HEROKU' not in os.environ:
+    LOGIN_URL = '/auth/login/google-oauth2/'
+    LOGIN_REDIRECT_URL = '/'
+    LOGOUT_REDIRECT_URL = '/'
+else:
+    LOGIN_URL = "https://grisly-spell-88719.herokuapp.com/auth/login/google-oauth2/"
+    LOGIN_REDIRECT_URL = "https://grisly-spell-88719.herokuapp.com/"
+    LOGOUT_REDIRECT_URL = 'https://grisly-spell-88719.herokuapp.com/'
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 # Application definition
 
@@ -152,14 +155,15 @@ MESSAGE_TAGS = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = os.getenv('EMAIL_HOST')
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+
 
 
 
 if 'IS_HEROKU' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = os.getenv('EMAIL_HOST')
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
     django_heroku.settings(locals())
