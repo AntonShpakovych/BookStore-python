@@ -28,7 +28,7 @@ class UserMailService:
                                         domain=UserMailService.LOCAL_DOMAIN,
                                         site_name=UserMailService.SITE_NAME,
                                         protocol=UserMailService.LOCAL_PROTOCOL)
-                                        
+
         send_mail(SUBJECT, message, LOCAL_MAIL_HOST , [associated_user.email], fail_silently=False)
 
     def mail_address(self, associated_user):
@@ -54,4 +54,4 @@ class UserMailService:
 
 
     def is_prod(self):
-        'IS_HEROKU' in os.environ
+        return 'IS_HEROKU' in os.environ
