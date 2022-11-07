@@ -25,14 +25,10 @@ AUTHENTICATION_BACKENDS = (
 )
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv('GOOGLE_KEY')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv('GOOGLE_SECRET')
-if 'IS_HEROKU' not in os.environ:
-    LOGIN_URL = '/auth/login/google-oauth2/'
-    LOGIN_REDIRECT_URL = '/'
-    LOGOUT_REDIRECT_URL = '/'
-else:
-    LOGIN_URL = "https://grisly-spell-88719.herokuapp.com/auth/login/google-oauth2/"
-    LOGIN_REDIRECT_URL = "https://grisly-spell-88719.herokuapp.com/"
-    LOGOUT_REDIRECT_URL = 'https://grisly-spell-88719.herokuapp.com/'
+LOGIN_URL = '/auth/login/google-oauth2/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 # Application definition
 
