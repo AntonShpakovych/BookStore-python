@@ -12,3 +12,7 @@ def get_item(dictionary, key):
 @register.filter
 def get_category(id):
     return Category.objects.get(id = id)
+
+@register.simple_tag
+def get_categories():
+    return Category.objects.all()

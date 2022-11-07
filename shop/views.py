@@ -4,7 +4,7 @@ from shop.services.books_service import BooksService
 
 
 def home_page(request):
-    return render(request, 'shop/pages/home.html')
+    return render(request, 'pages/home.html')
 
 
 

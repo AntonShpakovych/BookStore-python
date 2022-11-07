@@ -1,0 +1,39 @@
+{% extends '../../base.html' %}
+{% load static %}
+{% block content %}
+    <main class="container general-main-wrap">
+      <div class="text-center">
+        <h3 class="general-login-title">
+          Log In
+        </h3>
+        <a class="general-login-icon" href="{% url 'social:begin' 'google-oauth2' %}">
+          <i class="fa fa-google">
+          </i>
+        </a>
+        <p class="general-login-text">
+          or
+        </p>
+      </div>
+      <form class="general-form" method="POST">
+		    {% csrf_token %}
+        {% include '../layouts-sign_in/fields.html' %}
+        <div class="text-center">
+          <button class="btn btn-default mb-20" type="submit">
+            Log in
+          </button>
+        </div>
+      </form>
+      <p class="general-sign-text text-center">
+        Forgot password?
+        <a class="in-gold-500" href="{% url 'password_reset' %}">
+          Reset password
+        </a>
+      </p>
+      <p class="general-sign-text text-center">
+        Don't have an Account?
+        <a class="in-gold-500" href="{% url 'sign_up' %}">
+          Sign up
+        </a>
+      </p>
+    </main>
+{% endblock %}
