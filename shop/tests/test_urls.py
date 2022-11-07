@@ -3,7 +3,7 @@ from django.urls import reverse, resolve
 from shop.views import home_page, books, book
 
 
-class TestUrls(SimpleTestCase):
+class TestShopUrls(SimpleTestCase):
     def test_home_url_is_resolved(self):
         url = reverse('home')
         self.assertEqual(resolve(url).func, home_page)

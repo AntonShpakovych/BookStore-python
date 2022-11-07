@@ -3,7 +3,7 @@ from django.urls import reverse
 from shop.tests.factories.book import BookFactory
 
 
-class TestViews(TestCase):
+class TestShopViews(TestCase):
     def setUp(self):
        self.client = Client()
 
