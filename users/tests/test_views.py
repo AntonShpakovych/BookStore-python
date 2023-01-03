@@ -24,4 +24,14 @@ class TestUserViews(TestCase):
         user = CustomUserFactory.create()
         self.client.force_login(user)
         response = self.client.get(reverse('logout'))
-        self.assertIsInstance(response.wsgi_request.user, AnonymousUser)   
+        self.assertIsInstance(response.wsgi_request.user, AnonymousUser)
+
+    def test_password_reset_page_get(self):
+        response = self.client.get(reverse('password_reset'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'users/pages/password_reset.html')
+    
+    def test_password_reset_done_page_get(self):
+        response = self.client.get(reverse('password_reset_done'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'users/pages/password_reset_done.html')
