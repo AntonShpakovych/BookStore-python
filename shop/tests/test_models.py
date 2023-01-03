@@ -3,7 +3,7 @@ from shop.models import Book
 from shop.tests.factories.author import AuthorFactory
 from shop.tests.factories.book import BookFactory
 
-class TestModels(TestCase):
+class TestBookModel(TestCase):
     def setUp(self):
         self.authors = [AuthorFactory.create(), AuthorFactory.create()]
         self.book = BookFactory.create(authors = self.authors)

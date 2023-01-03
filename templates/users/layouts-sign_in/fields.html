@@ -1,0 +1,13 @@
+{% if errors %}
+    <div class="invalid-feedback">
+        {{ errors }}
+    </div>
+{% endif %}
+{% for field in form %}
+    <div class="form-group mb-30">
+        <label class="control-label input-label" for="{{ field.name }}">
+            Enter {{ field.name.capitalize }}
+        </label>
+        <input id="{{ field.name }}" class="form-control" name="{{ field.name }}" type="{{ field.name }}" placeholder="Enter {{ field.name.capitalize }}"></input>
+    </div>
+{% endfor %}

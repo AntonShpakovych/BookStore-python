@@ -6,25 +6,27 @@
         <div class="col-sm-9">
           <ul class="list-inline general-align mb-25">
             <li>
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="{% url 'home' %}">
                 Home
               </a>
             </li>
             <li>
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="{% url 'books' %}">
                 Shop
               </a>
             </li>
-            <li>
-              <a class="nav-link" href="#">
-                Orders
-              </a>
-            </li>
-            <li>
-              <a class="nav-link" href="#">
-                Settings
-              </a>
-            </li>
+            {% if user.is_authenticated %}
+              <li>
+                <a class="nav-link" href="#">
+                  Orders
+                </a>
+              </li>
+              <li>
+                <a class="nav-link" href="#">
+                  Settings
+                </a>
+              </li>
+            {% endif %}
           </ul>
         </div>
         <div class="col-sm-3">

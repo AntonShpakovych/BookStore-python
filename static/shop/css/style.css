@@ -9042,3 +9042,10 @@ img {
 .hidde{
   display: none;
 }
+.invalid-feedback{
+  color:  red;
+}
+
+.messages{
+  text-align: center;
+}

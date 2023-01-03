@@ -1,0 +1,27 @@
+{% load books_tags %}
+{% for field in form %}
+    <div class="form-group mb-30">
+        <label class="control-label input-label" for="{{ field.name }}">
+            {% if field.name == 'password1' %}
+                Enter password
+            {% elif field.name == 'password2' %}
+                Enter confirm password
+            {% else %}
+                Enter {{ field.name.capitalize }}
+            {% endif %}
+        </label>
+        {% if field.name == 'password1' %}
+            <input id="{{ field.name }}" class="form-control" name="{{ field.name }}" type="password" placeholder="Enter password"></input>
+        {% elif field.name == 'password2' %}
+            <input id="{{ field.name }}" class="form-control" name="{{ field.name }}" type="password" placeholder="Enter confirm password"></input>
+        {% else %}
+            <input id="{{ field.name }}" class="form-control" name="{{ field.name }}" type="{{ field.name }}" placeholder="Enter {{ field.name.capitalize }}"></input>
+        {% endif %}
+        
+        {% if form.errors|get_item:field.name %}
+            <div class="invalid-feedback">
+                {{ form.errors|get_item:field.name }}
+            </div>
+        {% endif %}
+    </div>
+{% endfor %}
