@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'shop',
     'users',
     'social_django',
+    'django_countries',
 ]
 
 MIDDLEWARE = [

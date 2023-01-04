@@ -1,10 +1,58 @@
 from django import forms
+from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, SetPasswordForm
-from users.models import CustomUser
+from django_countries.widgets import CountrySelectWidget
+from django_countries.fields import CountryField
+from users.messages import validation_messages
+
+import phonenumbers
+from phonenumbers.phonenumberutil import region_code_for_country_code
+
+from users.models import CustomUser, BillingAddress, ShippingAddress
 from users.messages.validation_messages import PASSWORD_MISSMATCH
 from users.validation import ValidationUser
 
 
+class BillingAddressForm(forms.ModelForm):
+    first_name= forms.CharField(widget= forms.TextInput
+                           (attrs={'placeholder':'Enter your first name', 'required': True, 'class':'form-control'}))
+    last_name = forms.CharField(widget= forms.TextInput
+                           (attrs={'placeholder':'Enter your last name', 'required': True, 'class':'form-control'}))
+    phone = forms.CharField(widget= forms.TextInput
+                           (attrs={'placeholder':'Enter your phone', 'required': True, 'class':'form-control'}))
+    city = forms.CharField(widget= forms.TextInput
+                           (attrs={'placeholder':'Enter your city', 'required': True, 'class':'form-control'}))
+    country = CountryField(blank_label='Select country',).formfield(
+        widget=CountrySelectWidget(
+           attrs={'class': 'form-control'}
+        )
+    )
+    zip = forms.CharField(widget= forms.TextInput
+                           (attrs={'placeholder':'Enter your zip', 'required': True, 'class':'form-control'}))
+    address = forms.CharField(widget= forms.TextInput
+                           (attrs={'placeholder':'Enter your address', 'required': True, 'class':'form-control'}))
+
+    class Meta:
+        model = BillingAddress
+        fields = "__all__"
+    
+    def clean(self):
+        cleaned_data = super(BillingAddressForm, self).clean()
+        
+        try:
+            pn = phonenumbers.parse(cleaned_data.get('phone'))
+            if not cleaned_data.get('country') == region_code_for_country_code(pn.country_code):
+                self.add_error('phone', validation_messages.ADDRESS_PHONE)
+        except phonenumbers.NumberParseException:
+            self.add_error('phone', validation_messages.ADDRESS_PHONE)
+
+class ShippingAddressForm(BillingAddressForm):
+    def __init__(self, *args, **kwargs):
+        super(ShippingAddressForm, self).__init__(*args,**kwargs)
+    
+    class Meta(BillingAddressForm.Meta):
+        model = ShippingAddress
+        fields = BillingAddressForm.Meta.fields
 
 class CustomUserCreationForm(UserCreationForm):
 

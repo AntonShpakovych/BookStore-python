@@ -2,7 +2,8 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 from users.forms import CustomUserCreationForm, CustomUserChangeForm
-from users.models import CustomUser
+from users.models import CustomUser, BillingAddress, ShippingAddress
+
 
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
@@ -11,7 +12,7 @@ class CustomUserAdmin(UserAdmin):
     list_display = ('email', 'is_staff', 'is_active',)
     list_filter = ('email', 'is_staff', 'is_active',)
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
+        (None, {'fields': ('email', 'password', 'billing_address', 'shipping_address')}),
         ('Permissions', {'fields': ('is_staff', 'is_active')}),
     )
     add_fieldsets = (
@@ -25,3 +26,5 @@ class CustomUserAdmin(UserAdmin):
 
 
 admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(BillingAddress)
+admin.site.register(ShippingAddress)

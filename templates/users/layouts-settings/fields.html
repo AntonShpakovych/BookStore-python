@@ -1,0 +1,21 @@
+{% load books_tags %}
+{% csrf_token %}
+<input type="hidden" name="type" id="type" value="{{ type }}">
+{% for field in form %}
+    <div class="form-group">
+        <label class="control-label input-label" for="{{ field.name }}">
+            {{ field.name|label_name }}
+        </label>
+        {{ field }}
+    </div>
+    {% if form.errors|get_item:field.name %}
+        <div class="invalid-feedback">
+            {{ form.errors|get_item:field.name }}
+        </div>
+    {% endif %}
+{% endfor %}
+<div class="text-center general-text-align">
+    <button class="btn" type="submit">
+    Save
+    </button>
+</div>
