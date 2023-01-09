@@ -1,0 +1,48 @@
+{% extends '../../base.html' %}
+{% block content %}
+<main class="container">
+    {% include '../layouts-setting/navigation.html' %}
+    <div class="tab-content">
+    <div id="address" class="tab-pane fade in active" role="tabpanel">
+    <div class=".general-main-wrap">
+        <div class="hidden-xs hidden-sm">
+            <div class="row">
+                <div class="col-md-5">
+                    <h3 class="general-subtitle mt-0">
+                    Billing Address
+                    </h3>
+                </div>
+                <div class="col-md-5 col-md-offset-1">
+                    <h3 class="general-subtitle mt-0">
+                    Shipping Address
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="billing-address" class="col-md-5 mb-40">
+                <div class="visible-xs visible-sm">
+                    <h3 class="general-subtitle mt-0">
+                    Billing Address
+                    </h3>
+                </div>
+                <form method="POST">
+                    {% include '../layouts-address/fields.html' with type='BillingAddress' form=billing_form %}
+                </form>
+            </div>
+            
+            <div id='shipping-address', class="col-md-5">
+                <div class="visible-xs visible-sm">
+                    <h3 class="general-subtitle mt-0">
+                    Shipping Address
+                    </h3>
+                </div>
+                <form method="POST">
+                    {% include '../layouts-address/fields.html' with type='ShippingAddress' form=shipping_form %}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+{% endblock %}

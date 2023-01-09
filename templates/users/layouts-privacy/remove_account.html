@@ -1,0 +1,21 @@
+<div class="col-sm-12">
+    <p class="in-gold-500 font-18 mb-25">
+    Remove Account
+    </p>
+    <div class="general-settings-btn">
+        <a id="delete_account" href="{% url 'delete_account' id=request.user.id %}" class="btn disabled mb-20"> Please Remove My Account</a>
+    </div>
+    <div class="form-group checkbox general-settings-checkbox">
+        <label class="checkbox-label">
+        <input id = "checkbox_delete_account" class="checkbox-input" type="checkbox" hidden="true" onclick="deleteAccount(this)">
+        </input>
+        <span class="checkbox-icon">
+            <i class="fa fa-check">
+            </i>
+        </span>
+        <span class="checkbox-text">
+            I understand that all data will be lost
+        </span>
+        </label>
+    </div>
+</div>

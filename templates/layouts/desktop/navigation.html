@@ -15,15 +15,9 @@
     <ul class="dropdown-menu">
       {% for category in categories %}
       <li>
-        {% if 'books' in request.get_full_path %}
-          <a href="?filter={{ category.id }}">
-            {{ category }}
-          </a>
-        {% else %}
-        <a href="books?filter={{ category.id }}">
+        <a href="{% url 'books' %}?filter={{category.id}}">
           {{ category }}
         </a>
-        {% endif %}
       </li>
       {% endfor %}
     </ul>
@@ -40,7 +34,7 @@
           </a>
         </li>
         <li>
-          <a href="{% url 'settings' %}">
+          <a href="{% url 'address' %}">
             Settings
           </a>
         </li>

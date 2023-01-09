@@ -12,17 +12,17 @@ from users.validation import ValidationUser, ValidationUserAddress
 
 class Address(models.Model):
     first_name = models.CharField(max_length=ValidationUserAddress.FIRST_NAME_MAX_LENGTH,
-                                  validators=[ValidationUserAddress.first_name_validation, MinLengthValidator(ValidationUserAddress.FIRST_NAME_MIN_LENGTH)])
+                                  validators=[ValidationUserAddress.first_name_validation, MinLengthValidator(ValidationUserAddress.FIRST_NAME_MIN_LENGTH)], blank=False, null=False)
     last_name = models.CharField(max_length=ValidationUserAddress.LAST_NAME_MAX_LENGTH,
-                                 validators=[ValidationUserAddress.last_name_validation, MinLengthValidator(ValidationUserAddress.LAST_NAME_MIN_LENGTH)])
-    phone = models.CharField(max_length=ValidationUserAddress.PHONE_MAX_LENGTH) # other validation implemented in form
+                                 validators=[ValidationUserAddress.last_name_validation, MinLengthValidator(ValidationUserAddress.LAST_NAME_MIN_LENGTH)], blank=False, null=False)
     city = models.CharField(max_length=ValidationUserAddress.CITY_MAX_LENGTH,
-                            validators=[ValidationUserAddress.city_validation, MinLengthValidator(ValidationUserAddress.CITY_MIN_LENGTH)])
-    country = CountryField()
+                            validators=[ValidationUserAddress.city_validation, MinLengthValidator(ValidationUserAddress.CITY_MIN_LENGTH)], blank=False, null=False)
     zip = models.CharField(max_length=ValidationUserAddress.ZIP_MAX_LENGTH,
-                          validators=[ValidationUserAddress.zip_validation, MinLengthValidator(ValidationUserAddress.ZIP_MIN_LENGTH)])
+                          validators=[ValidationUserAddress.zip_validation, MinLengthValidator(ValidationUserAddress.ZIP_MIN_LENGTH)], blank=False, null=False)
     address = models.CharField(max_length=ValidationUserAddress.ADDRESS_MAX_LENGTH,
-                               validators=[ValidationUserAddress.address_validation, MinLengthValidator(ValidationUserAddress.ADDRESS_MIN_LENGTH)])
+                               validators=[ValidationUserAddress.address_validation, MinLengthValidator(ValidationUserAddress.ADDRESS_MIN_LENGTH)], blank=False, null=False)
+    phone = models.CharField(max_length=ValidationUserAddress.PHONE_MAX_LENGTH, blank=False) # other validation implemented in form
+    country = CountryField(blank=False)
 
     class Meta:
         abstract=True

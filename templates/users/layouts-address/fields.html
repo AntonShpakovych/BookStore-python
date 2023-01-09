@@ -15,6 +15,14 @@
     {% endif %}
 {% endfor %}
 <div class="text-center general-text-align">
+    {% if type == 'ShippingAddress' %}
+        <div class="form-check" style="float: right;">
+            <label class="form-check-label" for="use-billing">
+                <input class="form-check-input" type="checkbox" value="" id="use-billing" onchange="useBilling(this)">
+                Use Billing Address
+            </label>
+        </div>
+    {% endif %}
     <button class="btn" type="submit">
     Save
     </button>

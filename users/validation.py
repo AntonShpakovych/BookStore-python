@@ -13,15 +13,17 @@ class ValidationUser:
     EMAIL_MAXIMUM_LENGTH = 63
     EMAIL_MESSAGE = validation_messages.EMAIL
 
-    def password_validation(password):
+    def password_validation(password, sign_up = True, target='new_password2'):
         PASSWORD_REGEX_TEMPLATE = r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])\S+$'
         
-
         if not re.fullmatch(PASSWORD_REGEX_TEMPLATE, password):
-            raise ValidationError(
-                _('%(message)s'),
-                params={'message': ValidationUser.PASSWORD_MESSAGE},
-            )
+            if sign_up:
+                raise ValidationError(
+                    _('%(message)s'),
+                    params={'message': ValidationUser.PASSWORD_MESSAGE},
+                )
+            else:
+                raise ValidationError({'new_password2': ValidationUser.PASSWORD_MESSAGE})
     
     def email_validation(email):
         EMAIL_REGEX_TEMPLATE = r'([\w+].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+'

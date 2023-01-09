@@ -11,8 +11,6 @@ class UserAddressCreateOrUpdate:
         self.request_data = request_data
 
     def call(self):
-        self._generate_dormant_form()
-
         if self._is_need_update():
             self._active_form_when_update()
             self._updating()
@@ -34,12 +32,6 @@ class UserAddressCreateOrUpdate:
     def _updating(self):
         if self.active_form.is_valid():
             self.active_form.save()
-
-    def _generate_dormant_form(self):
-        if self.is_billing():
-            self.dormant_form = ShippingAddressForm(instance=self.user.shipping_address)
-        else:
-            self.dormant_form = BillingAddressForm(instance=self.user.billing_address)
 
 
     def _active_form_when_create(self):
