@@ -24,7 +24,7 @@ AUTHENTICATION_BACKENDS = (
 )
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv('GOOGLE_KEY')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv('GOOGLE_SECRET')
-LOGIN_URL = '/auth/login/google-oauth2/'
+LOGIN_URL = '/user/sign_in/' #/auth/login/google-oauth2/
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'shop',
     'users',
     'social_django',
+    'django_countries',
 ]
 
 MIDDLEWARE = [

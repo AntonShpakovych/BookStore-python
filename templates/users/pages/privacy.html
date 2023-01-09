@@ -1,0 +1,11 @@
+{% extends '../../base.html' %}
+{% block content %}
+<main class="container">
+    {% include '../layouts-setting/navigation.html' %}
+        <div class="row mb-60">
+            {% include '../layouts-privacy/email.html' with form=email_form type='email' %}
+            {% include '../layouts-privacy/password.html' with form=password_form type='password' %}
+            {% include '../layouts-privacy/remove_account.html' %}
+        </div>
+</main>
+{% endblock %}

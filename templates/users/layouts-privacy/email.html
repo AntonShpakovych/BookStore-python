@@ -1,0 +1,28 @@
+{% load books_tags %}
+<div class="col-sm-5">
+    <p class="in-gold-500 font-18 mb-25">
+    Email
+    </p>
+    <form class="general-form-md" method="POST">
+        <input type="hidden" name="type" value="{{ type }}">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group mb-35">
+            <label class="control-label input-label" for="{{ field.name }}">
+                {{ field.name.title }}
+            </label>
+            {{ field }}
+            {% if form.errors|get_item:field.name %}
+                <div class="invalid-feedback">
+                    {{ form.errors|get_item:field.name }}
+                </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <div class="general-text-align">
+            <button class="btn btn-default mb-35" type="submit">
+            Save
+            </button>
+        </div>
+    </form>
+</div>

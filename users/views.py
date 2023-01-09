@@ -2,12 +2,16 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import PasswordResetForm
-from django.core.mail import send_mail, BadHeaderError
+from django.core.mail import BadHeaderError
+from django.contrib.auth.decorators import login_required
 
-from users.forms import CustomUserCreationForm, CustomUserLoginForm
+from users.forms import CustomUserCreationForm, CustomUserLoginForm\
+                       ,BillingAddressForm, ShippingAddressForm, CustomUserChangeEmailForm, CustomUserChangePasswordForm
 from users.models import CustomUser
-from users.messages.information_messages import SIGN_IN, INVALID_SIGN_IN, SIGN_UP, INVALID_HEADER, LOCAL_MAIL_HOST
+from users.messages.information_messages import *
 from users.services.user_mail_service import UserMailService
+from users.services.user_address_create_or_update import UserAddressCreateOrUpdate
+from users.services.user_change_email_or_password_service import UserChangeEmailOrPasswordService
 
 
 def sign_up(request):
@@ -58,4 +62,50 @@ def password_reset_request(request):
                     return redirect('password_reset')
                 return redirect ("password_reset_done")
     password_reset_form = PasswordResetForm()
-    return render(request, "users/pages/password_reset.html", {'form': password_reset_form})            
+    return render(request, 'users/pages/password_reset.html', {'form': password_reset_form})
+
+@login_required
+def setting_address(request):
+    user = request.user
+    billing_address_form = BillingAddressForm(instance=user.billing_address)
+    shipping_address_form = ShippingAddressForm(instance=user.shipping_address)
+
+    if request.method == 'POST':
+        type = request.POST.get('type')
+        user_address_service = UserAddressCreateOrUpdate(user, type, request.POST)
+        user_address_service.call()
+
+        if user_address_service.is_billing():
+            billing_address_form = user_address_service.active_form
+        else:
+            shipping_address_form = user_address_service.active_form
+   
+    return render(request, 'users/pages/address.html', {'billing_form': billing_address_form, 'shipping_form': shipping_address_form})
+
+@login_required
+def setting_privacy(request):
+    user_email_form = CustomUserChangeEmailForm()
+    user_password_form = CustomUserChangePasswordForm()
+
+    if request.method == 'POST':
+        user = request.user
+        type = request.POST.get('type')
+        data = request.POST
+        
+        user_email_or_password_service = UserChangeEmailOrPasswordService(user, type, data)
+        user_email_or_password_service.call()
+        
+        if type == 'password':
+            user_password_form = user_email_or_password_service.form
+            if user_password_form.is_valid(): messages.add_message(request, messages.SUCCESS, CHANGE_PASSWORD)
+        else:
+            user_email_form = user_email_or_password_service.form
+            if user_email_form.is_valid(): messages.add_message(request, messages.SUCCESS, UPDATE_EMAIL)
+    return render(request, 'users/pages/privacy.html', {'email_form':user_email_form, 'password_form':user_password_form})
+
+@login_required
+def delete_account(request, id):
+    user = CustomUser.objects.get(id=id)
+    user.delete()
+    messages.add_message(request, messages.SUCCESS, DELETE_ACCOUNT)
+    return redirect('home')

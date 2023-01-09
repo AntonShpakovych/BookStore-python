@@ -6,3 +6,12 @@ SIGN_UP = 'You create account, also you already sign in!'
 INVALID_HEADER = 'Invalid header found'
 LOCAL_MAIL_HOST = 'admin@example.com'
 SUBJECT = 'Password Reset Requested'
+
+#CHANGE_EMAIL
+UPDATE_EMAIL = 'You have updated your email'
+
+#DELETE_ACCOUNT
+DELETE_ACCOUNT = 'You have successfully deleted your account'
+
+#CHANGE_PASSWORD
+CHANGE_PASSWORD = 'You have successfully change password for your account'
