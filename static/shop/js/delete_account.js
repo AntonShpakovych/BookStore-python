@@ -12,5 +12,4 @@ function deleteAccount(element){
         button.classList.remove(...NOT_DISABLED_BUTTON_CLASS)
         button.classList.add(...DISABLED_BUTTON_CLASS)
     }
-    console.log(button)
 }
